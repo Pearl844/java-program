@@ -1,0 +1,65 @@
+public class Main {
+		public static void main(String [] args) {
+			BankAccount savings = new savingsAccount ("Pearl", 10000.00);
+			savings.displayDetails();
+			savings.deposit (2000.00);
+			savings.Withdraw (500.00);
+			savings.displayDetails();
+		}
+	}
+//abstraction
+abstract class BankAccount {
+	private String AccountHolderName;
+	private double Balance;
+	//constructor
+	public BankAccount (String AccountHolderName, double Balance) {
+		this.AccountHolderName = AccountHolderName;
+		this.Balance = Balance;
+	}
+	public abstract void displayDetails();
+	//encapsulation
+	public String getAccountHolderName() {
+		return AccountHolderName;
+	}
+	public void setAccountHolderName(String accountHolderName) {
+		this.AccountHolderName = accountHolderName;
+	}
+	public double getBalance() {
+		return Balance;
+	}
+		public void setBalance(double Balance) {
+			this.Balance = Balance;
+		}
+		//polymorphism
+		public void deposit (double amount) {
+			if(amount>0) {
+				Balance += amount;
+				System.out.println("Deposit amount :" +amount);
+			}
+			else {
+				System.out.println("Deposited Properly");
+			}
+		}
+		public void Withdraw(double amount) {
+			if (amount>0 && amount<= Balance) {
+				Balance -= amount;
+				System.out.println ("Withdraw Amount :" +amount);
+			}
+			else {
+				System.out.println ("Insufficient balance");
+			}
+		}
+	}
+	//inheritence
+	class savingsAccount extends BankAccount {
+		public savingsAccount (String AccountHolderName, double Balance) {
+			super(AccountHolderName, Balance);
+		}
+		//Display Details
+		@Override
+		public void displayDetails() {
+			System.out.println ("Account holder name :"+getAccountHolderName());
+			System.out.println ("Account Balance :"+getBalance());
+		}
+	}
+	
