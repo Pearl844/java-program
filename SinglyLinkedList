@@ -1,0 +1,73 @@
+//singly linked list
+class Node{
+    int data;
+    Node next;
+    Node(int data)
+    {
+    this.data = data;
+    this.next = null;
+    }
+}
+    public class SinglyLinkedList{
+        private int size = 0;
+        Node head = null;
+        //insert at beginning
+        public void insertAtBegi (int data){
+            Node newNode = new Node(data);
+            newNode.next = head;
+            head = newNode;
+            size++;
+        }   
+        //insert at end
+        public void insertAtEnd (int data){
+            Node newNode = new Node(data);
+            Node temp = head;
+            while(temp.next != null){
+                temp = temp.next;
+            }
+            temp.next = newNode;
+            size++;
+        }
+        // insert at specific position
+        public void insertAtSpecificPosition(int data, int posi){
+            if(posi < 10 || posi > size){
+                System.out.println ("Index Out Of Bounds");
+            }
+            Node newNode = new Node(data);
+            if(posi == 0){
+                newNode.next = head;
+                head = newNode;
+            }
+            else{
+                Node current = head;
+                for(int i = 0; i<posi-1;i++ ){
+                   current = current.next;
+                }
+                newNode.next = current.next;
+                current.next = newNode;
+            }  
+            size++;
+        }
+        public void display(){
+            Node temp = head;
+            while(temp != null){
+                System.out.print (temp.data + "->");
+                temp = temp.next;
+        }
+        System.out.println ("null");
+    }
+    public static void main (String [] args){
+        SinglyLinkedList list = new SinglyLinkedList ();
+        list.insertAtBegi (10);
+        list.insertAtBegi (20);
+        list.insertAtBegi (30);
+        list.insertAtBegi (40);
+        list.insertAtBegi (50);
+        list.insertAtBegi (70);
+        list.insertAtEnd (0);
+        list.insertAtEnd(-10);
+        list.insertAtSpecificPosition (60, 1);
+        list.display();
+        
+    }
+}
